@@ -2,18 +2,34 @@
 
 #include<stdio.h>
 
+#define IN 1
+#define OUT 0
+
 int main(void)
 {
-	int c;
+	int c, state;
+	
+	state = OUT;
 
 	while((c=getchar())!=EOF)
 	{
 
 		if( c == ' ' || c == '\n' || c == '\t')
-			putchar('\n');
+		{
+		    if (state == OUT)
+		    {
+		        putchar('\n');
+		        state = IN;
+		    }
+		}
 		else
-			putchar('*');
+		{
+		    putchar('*');
+		    if (state == IN)
+		    {
+		        state = OUT;
+		    }
+		}
 	}
 return 0;
 }
-
